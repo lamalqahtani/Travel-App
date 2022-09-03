@@ -1,11 +1,11 @@
 const express = require('express');
-const app = express();
 const cors = require('cors');
-const exp = require('constants');
-
-// Require Express to run server and routes
+const fetch = require('node-fetch');
+const dotenv = require('dotenv');
+dotenv.config();
 
 // Start up an instance of app
+const app = express();
 
 /* Middleware*/
 //Here we are configuring express to use body-parser as middle-ware.
@@ -26,6 +26,19 @@ app.get('/', function (req, res) {
 app.get('/test', function (req, res) {
     res.json({'msg':'tested'});
 })
+
+app.post('/api/geoname', async (req,res)=>{
+    console.log(req.body.countryName);
+    let response = await fetch(`http://api.geonames.org/postalCodeSearchJSON?placename=${req.body.countryName}&style=short&maxRows=1&username=${process.env.USER_NAME}`)
+    
+    try{
+        let data = await response.json();
+        console.log(data);
+        res.json(data);
+    }catch(error){
+        console.log(error);
+    }
+});
 
 // designates what port the app will listen to for incoming requests
 app.listen(8081, function () {

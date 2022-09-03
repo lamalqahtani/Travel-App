@@ -1,6 +1,16 @@
 //Get Lat and Lng By Country Name
 export function geonameAPI(country){
-    fetch(`http://api.geonames.org/postalCodeSearchJSON?placename=${country}&style=short&maxRows=1&username=lamiaa2q`)
+    return fetch(`http://localhost:8081/api/geoname`,{
+        method:'POST',
+        credentials: 'same-origin',
+        headers:{
+            'content-type': 'application/json'
+        },
+        body: JSON.stringify({countryName: country})
+    })
     .then(res=>res.json())
-    .then(data=>console.log(data));
+    .then(data=>{
+        // console.log(data)
+        return data;
+    });
 }
