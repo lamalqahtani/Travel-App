@@ -27,9 +27,25 @@ app.get('/test', function (req, res) {
     res.json({'msg':'tested'});
 })
 
+//get coordenates
 app.post('/api/geoname', async (req,res)=>{
     console.log(req.body.countryName);
     let response = await fetch(`http://api.geonames.org/postalCodeSearchJSON?placename=${req.body.countryName}&style=short&maxRows=1&username=${process.env.USER_NAME}`)
+    
+    try{
+        let data = await response.json();
+        console.log(data);
+        res.json(data);
+    }catch(error){
+        console.log(error);
+    }
+});
+
+// get weather forcast
+app.post('/api/weatherbit', async (req,res)=>{
+    console.log(req.body.lng);
+    console.log(req.body.lat);
+    let response = await fetch(`https://api.weatherbit.io/v2.0/forecast/daily?key=${process.env.API_KEY_WEATHERBIT}&lat=${req.body.lat}&lon=${req.body.lng}`)
     
     try{
         let data = await response.json();
