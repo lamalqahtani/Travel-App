@@ -56,6 +56,20 @@ app.post('/api/weatherbit', async (req,res)=>{
     }
 });
 
+// get image
+app.post('/api/pixabay', async (req,res)=>{
+    console.log(req.body.countryName);
+    let response = await fetch(`https://pixabay.com/api/?key=${process.env.API_KEY_PIXABAY}&q=${req.body.countryName}&image_type=photo`)
+    
+    try{
+        let data = await response.json();
+        console.log(data);
+        res.json(data);
+    }catch(error){
+        console.log(error);
+    }
+});
+
 // designates what port the app will listen to for incoming requests
 app.listen(8081, function () {
     console.log('Example app listening on port 8081!')
