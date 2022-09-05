@@ -1,0 +1,15 @@
+#modal-body-id{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    p{
+        order: 2;
+        margin-left: 1%;
+    }
+    img{
+        order: 1;
+        width: 50%;
+        height: 50%;
+    }
+}

@@ -1,8 +1,9 @@
 import {geonameAPI} from './js/geoname';
 import {weatherbit} from './js/weatherbit';
 import {pixabay} from './js/pixabay';
+import './styles/style.scss'
 
-
+//Global Variables and Constants
 const formElement = document.getElementById('form');
 const modalTitle = document.getElementById('exampleModalLabel');
 const modalBodyContainer = document.getElementById('modal-body-id');
@@ -13,6 +14,15 @@ formElement.addEventListener('submit',async (event)=>{
 
     let date = document.getElementById('date').value;
     let countryName = document.getElementById('country').value;
+
+    //making sure the user inserted inputs
+    if(!date || !countryName || countryName == '' ){
+        saveButton.style.display = 'none';
+        modalTitle.textContent = 'Oops';
+        modalBody.innerHTML = `<p> Please, inser Date and Place to visit so we can provide you with the trip details.</p>`; 
+        return;
+    }
+
     let coordenates = await geonameAPI(countryName);
     
     console.log(coordenates.postalCodes[0].lng);
@@ -26,13 +36,13 @@ formElement.addEventListener('submit',async (event)=>{
 
     // current date with yyyy-mm-dd format => new Date().toISOString().slice(0, 10)
     let currentDate = new Date().toISOString().slice(0, 10);
-    // console.log('currentDate '+ currentDate);
-    // console.log('Date '+ date);
     if(currentDate > date){
         modalBody.innerHTML = 'Date expired';
         saveButton.style.display = 'none';
         return;
     }
+    //displaying save button again since there is no other mistakes by the user
+    saveButton.style.display = null; 
 
     let found = false;
     for (let i = 0; i < forcast.data.length; i++) {
@@ -52,3 +62,9 @@ formElement.addEventListener('submit',async (event)=>{
 
 
 });
+
+export{
+    geonameAPI,
+    weatherbit,
+    pixabay
+}
