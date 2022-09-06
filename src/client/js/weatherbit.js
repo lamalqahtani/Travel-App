@@ -13,8 +13,8 @@ export function weatherbit(lngValue,latValue){
     })
     .then(res=>res.json())
     .then(data=>{
-        console.log('*** weather data ***')
-        console.log(data)
+        // console.log('*** weather data ***')
+        // console.log(data)
         return data;
     });
 }

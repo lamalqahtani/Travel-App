@@ -25,14 +25,14 @@ formElement.addEventListener('submit',async (event)=>{
 
     let coordenates = await geonameAPI(countryName);
     
-    console.log(coordenates.postalCodes[0].lng);
-    console.log(coordenates.postalCodes[0].lat);
-    console.log(coordenates.postalCodes[0].placeName);
+    // console.log(coordenates.postalCodes[0].lng);
+    // console.log(coordenates.postalCodes[0].lat);
+    // console.log(coordenates.postalCodes[0].placeName);
     modalTitle.textContent = 'Trip to ' + countryName;
     
     let forcast = await weatherbit(coordenates.postalCodes[0].lng,coordenates.postalCodes[0].lat);
-    console.log('forcast data: ');
-    console.log(forcast);
+    // console.log('forcast data: ');
+    // console.log(forcast);
 
     // current date with yyyy-mm-dd format => new Date().toISOString().slice(0, 10)
     let currentDate = new Date().toISOString().slice(0, 10);
