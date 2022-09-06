@@ -7,11 +7,11 @@ module.exports = {
     entry: './src/client/index.js',
     mode: 'development',
     devtool: 'source-map',
+    stats: 'verbose',
     output: {
         libraryTarget: 'var',
         library: 'Client'
     },
-    stats: 'verbose',
     module: {
         rules: [
             {
@@ -20,7 +20,7 @@ module.exports = {
                 loader: "babel-loader"
             },
             {
-                test: /.scss$/,
+                test: /\.scss$/,
                 use: [ 'style-loader', 'css-loader', 'sass-loader' ]
             }
         ]
