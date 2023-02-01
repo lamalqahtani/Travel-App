@@ -1,3 +1,10 @@
+body{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(skyblue, purple) fixed ;
+}
 #modal-body-id{
     display: flex;
     flex-direction: row;
@@ -12,4 +19,27 @@
         width: 50%;
         height: 50%;
     }
+}
+.form-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    padding: 20px;
+    position: relative;
+    top: 20vh;
+    width: 70%;
+    height: 300px;
+    background-color: white;
+    border-top: 4px solid purple;
+}
+
+.form-container button{
+    background-color: purple;
+    border-color: white;
+}
+.form-container button:hover{
+    background-color: white;
+    color: purple;
+    border-color: purple;
 }
